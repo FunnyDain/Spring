@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
@@ -10,10 +11,15 @@ public class OrderServiceImpl implements OrderService{
 
     //OrderService가 필요한 것2
     //1. memberRepository에서 회원찾아야함
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
     //2. 할인 정책
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
-    
+    private final DiscountPolicy discountPolicy;      //final은 무조건 값이 할당되어야하므로 지움
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
+
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId);
