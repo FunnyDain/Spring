@@ -30,4 +30,9 @@ public class OrderServiceImpl implements OrderService{
     //OrderSerivce입장에서는 할인에 대해 아무것도 몰라도 discountPrice가 알아서 해주고, 결과를 줌
     //단일체계원칙을 아주 잘지켜서
     //할인에 문제가 생기면 할인쪽만 수정하면 됌
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }

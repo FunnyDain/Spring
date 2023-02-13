@@ -16,13 +16,33 @@ public class AppConfig {
 //    public MemberService memberService(){
 //        return new MemberServiceImpl(new MemoryMemberRepository());
 //    }
+
+    //@Bean memberService -> new MemoryMemberRepository
+    //@Bean orderService -> new MemoryMemberRepository
+    //이러면 싱글톤이 깨질까?
+
+    //1.
+    //call AppConfig.memberService
+    //call AppConfig.memberRepository
+
+    //2.
+    //call AppConfig.memberRepository
+
+    //3.
+    //call AppConfig.orderService
+    //call AppConfig.memberRepository
+
+    //=> 결과적으로 memberRepository 세번 호출
+
     @Bean
     public MemberService memberService(){
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
-    private static MemoryMemberRepository memberRepository() {
+    public MemoryMemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
@@ -30,6 +50,7 @@ public class AppConfig {
     //여기서도 생성자 주입을 할 것인데 memberRepository, discountPolicy 사용하는 필드가 두 개
     @Bean
     public OrderService orderService(){
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
