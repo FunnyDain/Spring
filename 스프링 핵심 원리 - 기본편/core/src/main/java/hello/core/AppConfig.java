@@ -13,26 +13,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration      //application의 구성,설정 정보
 public class AppConfig {
-//    public MemberService memberService(){
-//        return new MemberServiceImpl(new MemoryMemberRepository());
-//    }
-
-    //@Bean memberService -> new MemoryMemberRepository
-    //@Bean orderService -> new MemoryMemberRepository
-    //이러면 싱글톤이 깨질까?
-
-    //1.
-    //call AppConfig.memberService
-    //call AppConfig.memberRepository
-
-    //2.
-    //call AppConfig.memberRepository
-
-    //3.
-    //call AppConfig.orderService
-    //call AppConfig.memberRepository
-
-    //=> 결과적으로 memberRepository 세번 호출
 
     @Bean
     public MemberService memberService(){
