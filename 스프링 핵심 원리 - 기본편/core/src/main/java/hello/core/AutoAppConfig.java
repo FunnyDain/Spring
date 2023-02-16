@@ -19,9 +19,9 @@ import org.springframework.context.annotation.FilterType;
         //Configuration.class를 제외(AppConfig는 수동으로 등록하는 것인데 자동으로 등록하면 안되므로)
 )
 public class AutoAppConfig {
-
+/*
     @Bean//(name = "memoryMemberRepository")      //소문자로 이름 바뀜
     MemberRepository memberRepository() {
         return new MemoryMemberRepository();
-    }
+    }*/
 }
